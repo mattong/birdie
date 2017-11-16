@@ -17,10 +17,10 @@ defmodule BirdieWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    resources "/users", UserController
+    resources "/posts", PostController
   end
 
- resources "/users", UserController
- resources "/posts", PostController
 
   # Other scopes may use custom stacks.
   # scope "/api", BirdieWeb do
