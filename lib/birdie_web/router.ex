@@ -19,6 +19,9 @@ defmodule BirdieWeb.Router do
     get "/", PageController, :index
   end
 
+ resources "/users", UserController
+ resources "/posts", PostController
+
   # Other scopes may use custom stacks.
   # scope "/api", BirdieWeb do
   #   pipe_through :api
