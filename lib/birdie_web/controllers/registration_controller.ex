@@ -15,7 +15,7 @@ defmodule BirdieWeb.RegistrationController do
     Birdie.Repo.insert!(changeset)
 
     conn
-    |> put_flash(:info, "YAAAAS")
-    |> render("new.html", changeset: changeset)
+    |> put_flash(:info, "Welcome to Birdie")
+    |> redirect(to: registration_path(conn, :new))
   end
 end

@@ -6,6 +6,8 @@ defmodule Birdie.User do
 
   schema "users" do
     field :username, :string
+    field :password, :string
+    field :email, :string
 
     has_many :chirps, Birdie.Chirp
 
@@ -14,7 +16,7 @@ defmodule Birdie.User do
 
   def changeset(struct, attrs \\ %{}) do
     struct
-    |> cast(attrs, [:username])
-    |> validate_required([:username])
+    |> cast(attrs, [:username, :password, :email])
+    |> validate_required([:username, :password, :email])
   end
 end

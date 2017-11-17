@@ -4,5 +4,15 @@
     = text_input f, :username, class: "form-control", required: true
     = error_tag f, :username
 
+  .form-group
+    = label f, :email, class: "control-label"
+    = email_input f, :email, class: "form-control", required: true
+    = error_tag f, :email
+
+  .form-group
+    =label f, :password, class: "control-label"
+    = password_input f, :password, class: "form-control", required: true
+    = error_tag f, :password
+
   .form-group.-submit
     = submit "Create an account"
