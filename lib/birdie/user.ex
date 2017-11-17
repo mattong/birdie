@@ -7,13 +7,13 @@ defmodule Birdie.User do
   schema "users" do
     field :username, :string
 
-    has_many :chirps, Birdie.Chirps
+    has_many :chirps, Birdie.Chirp
 
     timestamps()
   end
 
-  def changeset(%User{} = user, attrs) do
-    user
+  def changeset(struct, attrs \\ %{}) do
+    struct
     |> cast(attrs, [:username])
     |> validate_required([:username])
   end
