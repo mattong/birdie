@@ -20,6 +20,8 @@ defmodule BirdieWeb.Router do
 
     get "/sign_up", RegistrationController, :new
     post "/sign_up", RegistrationController, :create
+
+    get "/chirps", ChirpController, :index #placeholder
   end
 
   # Other scopes may use custom stacks.
