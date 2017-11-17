@@ -1,0 +1,26 @@
+section.landing-content
+  .container-fluid
+    .col-lg-4.col-lg-offset-4
+      h1.heading Welcome to Birdie!
+      p.subheading It's like Twitter, but better.
+      ul.nav.nav-tabs.nav-justified(role="tablist")
+        li.active
+          a(data-toggle="tab" href="#login" role="tab") Login
+        li
+          a(data-toggle="tab" href="#signup" role="tab") Sign up
+      .tab-content
+        .tab-pane.fade.in.active#login(role="tabpanel")
+          form
+            .form-group
+              input.form-control(type="text" placeholder="Username")
+            .form-group
+              input.form-control(type="password" placeholder="Password")
+            button.button(type="submit") Submit
+        .tab-pane.fade#signup(role="tabpanel")
+          form
+            .form-group
+              input.form-control(type="text" placeholder="Username")
+            .form-group
+              input.form-control(type="password" placeholder="Password")
+      
+      p Made with ♥  :viki: by Mashup Noobdevs
