@@ -3,8 +3,8 @@ defmodule Birdie.Repo.Migrations.AddUserPasswordEmail do
 
   def change do
     alter table(:users) do
-      add :password, string
-      add :email, string
+      add :password, :string
+      add :email, :string
     end
   end
 end

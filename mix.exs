@@ -6,11 +6,11 @@ defmodule Birdie.Mixfile do
       app: :birdie,
       version: "0.0.1",
       elixir: "~> 1.4",
-      elixirc_paths: elixirc_paths(Mix.env,
-        compilers: [:phoenix, :gettext] ++ Mix.compilers,
-        start_permanent: Mix.env == :prod,
-        aliases: aliases(),
-        deps: deps())
+      elixirc_paths: elixirc_paths(Mix.env),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers,
+      start_permanent: Mix.env == :prod,
+      aliases: aliases(),
+      deps: deps()
     ]
   end
 
@@ -19,7 +19,7 @@ defmodule Birdie.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Birdie.[Application, ]},
+      mod: {Birdie.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -43,7 +43,6 @@ defmodule Birdie.Mixfile do
       {:cowboy, "~> 1.0"},
       {:expug, "~> 0.9"},
       {:phoenix_expug, "~> 0.1"},
-      {:guardian, "~> 1.0-beta"}
     ]
   end
 

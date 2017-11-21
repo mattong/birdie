@@ -6,7 +6,8 @@ defmodule Birdie.User do
 
   schema "users" do
     field :username, :string
-    field :password, :string
+    field :password, :string, virtual: true
+    field :hashed_password, :string
     field :email, :string
 
     has_many :chirps, Birdie.Chirp
