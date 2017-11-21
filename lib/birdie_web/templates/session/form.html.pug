@@ -1,0 +1,13 @@
+= form_for @changeset, @action, [multipart: true], fn f ->
+  .form-group
+    = label f, :email, class: "control-label"
+    = email_input f, :email, class: "form_control", required: true
+    = error_tag f, :email
+
+  .form-group
+    = label f, :password, class: "control-label"
+    = password_input f, :password, class: "form-control", required: tru
+    = error_tag f, :email
+
+  .form-group.-submit
+    = submit "SIGN IN"
