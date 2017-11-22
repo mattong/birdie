@@ -19,9 +19,9 @@ defmodule BirdieWeb.Router do
 
     get "/", PageController, :index
 
-    resources "/sign_up", BirdieWeb.RegistrationController, only: [:new, :create]
+    resources "/sign_up", RegistrationController, only: [:new, :create]
 
-    resources "/sign_in", BirdieWeb.SessionController, only: [:new, :create, :delete]
+    resources "/sign_in", SessionController, only: [:new, :create, :delete]
   end
 
   # Other scopes may use custom stacks.

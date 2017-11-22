@@ -3,6 +3,7 @@ defmodule Birdie.Plug.Auth do
   import Phoenix.Controller
   import Comeonin.Argon2, only: [checkpw: 2, dummy_checkpw: 0]
   alias Birdie.User
+  alias BirdieWeb.Router.Helpers
 
   def init(opts) do
     Keyword.fetch!(opts, :repo)
@@ -58,7 +59,7 @@ defmodule Birdie.Plug.Auth do
   def authenticate(%Plug.Conn{assigns: %{current_user: nil}} = conn, _opts) do
     conn
     |> put_flash(:error, "You must be signed in to do that")
-    |> redirect(to: Birdie.Router.Helpers.registration_path(conn, :new))
+    |> redirect(to: Helpers.registration_path(conn, :new))
   end
   def authenticate(conn, _opts), do: conn
 end 

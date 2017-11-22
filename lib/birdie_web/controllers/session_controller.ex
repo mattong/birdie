@@ -7,23 +7,23 @@ defmodule BirdieWeb.SessionController do
   end
 
   def create(conn, %{"email" => email, "password" => password}) do
-    case Birdie.Auth.user_auth(conn, email, password, repo: Repo) do
+    case Birdie.Plug.Auth.user_auth(conn, email, password, repo: Repo) do
       {:ok, conn} ->
         user = Repo.get(User, conn.current_user)
         conn
         |> put_flash(:info, "Welcome back!")
-        |> redirect(to: user_path(conn, :show, user)
+        |> redirect(to: BirdieWeb.Router.Helpers.user_path(conn, :show, user))
       {:error, _, _} ->
         conn
         |> put_flash(:error, "Nope!")
-        |> redirect(to: session_path(conn, :new))
+        |> redirect(to: BirdieWeb.Router.Helpers.session_path(conn, :new))
     end
   end
 
   def delete(conn, _params) do
     conn
-    |> Birdie.Auth.sign_out()
+    |> Birdie.Plug.Auth.sign_out()
     |> put_flash(:info, "Bye felicia!")
-    |> redirect(to: session_path(conn, :new)
+    |> redirect(to: BirdieWeb.Router.Helpers.session_path(conn, :new)) #ask about this
   end
 end
