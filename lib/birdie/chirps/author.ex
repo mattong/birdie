@@ -1,19 +1,19 @@
-defmodule Birdie.User do
+defmodule Birdie.Chirps.Author do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Birdie.User
-
+  alias Birdie.Chirps.Author
 
   schema "users" do
     field :username, :string
 
-    has_many :chirps, Birdie.Chirp
+    has_many :chirps, Birdie.Chirps.Chirp
 
     timestamps()
   end
 
-  def changeset(struct, attrs \\ %{}) do
-    struct
+  @doc false
+  def changeset(%Author{} = author, attrs) do
+    author
     |> cast(attrs, [:username])
     |> validate_required([:username])
   end

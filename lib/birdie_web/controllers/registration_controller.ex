@@ -1,21 +1,23 @@
 defmodule BirdieWeb.RegistrationController do
   use BirdieWeb, :controller
 
-  alias Birdie.{
-    User
-  }
+  alias Birdie.Accounts
 
   def new(conn, _params) do
-    changeset = User.changeset(%User{})
+    changeset = Accounts.new_user()
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"user" => params}) do
-    changeset = User.changeset(%User{}, params)
-    Birdie.Repo.insert!(changeset)
-
-    conn
-    |> put_flash(:info, "YAAAAS")
-    |> render("new.html", changeset: changeset)
+    case Accounts.create_user(params) do
+      {:ok, user} -> 
+        conn
+        |> put_flash(:info, "Welcome to Birdie")
+        |> redirect(to: registration_path(conn, :new))
+      {:error, %Ecto.Changeset{} = changeset} ->
+        conn
+        |> put_flash(:error, "Something went wrong!")
+        |> redirect(to: registration_path(conn, :new))
+    end
   end
 end

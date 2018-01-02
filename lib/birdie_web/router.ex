@@ -7,6 +7,7 @@ defmodule BirdieWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Birdie.Plug.Auth, repo: Birdie.Repo
   end
 
   pipeline :api do
@@ -20,10 +21,16 @@ defmodule BirdieWeb.Router do
 
     get "/sign_up", RegistrationController, :new
     post "/sign_up", RegistrationController, :create
-  end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", BirdieWeb do
-  #   pipe_through :api
-  # end
+    get "/sign_in", SessionController, :new
+    post "/sign_in", SessionController, :create
+
+    delete "/sign_out", SessionController, :delete
+
+    resources "/users", UserController
+  end
+end
+
+defmodule UserController do
+  use BirdieWeb, :controller
 end

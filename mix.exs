@@ -42,7 +42,9 @@ defmodule Birdie.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:expug, "~> 0.9"},
-      {:phoenix_expug, "~> 0.1"}
+      {:phoenix_expug, "~> 0.1"},
+      {:comeonin, "~> 4.0"},
+      {:argon2_elixir, "~> 1.2"}
     ]
   end
 
