@@ -1,7 +1,7 @@
 = form_for @changeset, @action, [multipart: true], fn f ->
   .form-group
     = label f, :email, class: "control-label"
-    = email_input f, :email, class: "form_control", required: true
+    = email_input f, :email, class: "form-control", required: true
     = error_tag f, :email
 
   .form-group

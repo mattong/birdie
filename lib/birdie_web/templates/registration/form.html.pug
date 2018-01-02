@@ -1,10 +1,5 @@
 = form_for @changeset, @action, [multipart: true], fn f ->
   .form-group
-    = label f, :username, class: "control-label"
-    = text_input f, :username, class: "form-control", required: true
-    = error_tag f, :username
-
-  .form-group
     = label f, :email, class: "control-label"
     = email_input f, :email, class: "form-control", required: true
     = error_tag f, :email

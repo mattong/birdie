@@ -19,13 +19,18 @@ defmodule BirdieWeb.Router do
 
     get "/", PageController, :index
 
-    resources "/sign_up", RegistrationController, only: [:new, :create]
+    get "/sign_up", RegistrationController, :new
+    post "/sign_up", RegistrationController, :create
 
-    resources "/sign_in", SessionController, only: [:new, :create, :delete]
+    get "/sign_in", SessionController, :new
+    post "/sign_in", SessionController, :create
+
+    delete "/sign_out", SessionController, :delete
+
+    resources "/users", UserController
   end
+end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", BirdieWeb do
-  #   pipe_through :api
-  # end
+defmodule UserController do
+  use BirdieWeb, :controller
 end

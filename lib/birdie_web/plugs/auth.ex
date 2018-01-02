@@ -2,7 +2,7 @@ defmodule Birdie.Plug.Auth do
   import Plug.Conn
   import Phoenix.Controller
   import Comeonin.Argon2, only: [checkpw: 2, dummy_checkpw: 0]
-  alias Birdie.User
+  alias Birdie.Accounts.User
   alias BirdieWeb.Router.Helpers
 
   def init(opts) do
