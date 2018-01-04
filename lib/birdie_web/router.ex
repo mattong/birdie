@@ -17,13 +17,13 @@ defmodule BirdieWeb.Router do
   scope "/", BirdieWeb do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    # get "/", PageController, :index
 
     get "/sign_up", RegistrationController, :new
     post "/sign_up", RegistrationController, :create
 
-    get "/sign_in", SessionController, :new
-    post "/sign_in", SessionController, :create
+    get "/", SessionController, :new
+    post "/", SessionController, :create
 
     delete "/sign_out", SessionController, :delete
 

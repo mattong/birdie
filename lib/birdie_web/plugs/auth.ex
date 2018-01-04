@@ -49,7 +49,7 @@ defmodule Birdie.Plug.Auth do
 
   # Use checkpw from Comeonin to check password match
   defp do_password_auth(conn, user, password) do
-    if checkpw(password, user.hashed_password) do
+    if checkpw(password, user.password_hash) do
       {:ok, sign_in(conn, user)}
     else
       {:error, :unauthorized, conn}
