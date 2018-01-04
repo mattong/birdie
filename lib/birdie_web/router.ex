@@ -17,7 +17,8 @@ defmodule BirdieWeb.Router do
   scope "/", BirdieWeb do
     pipe_through :browser # Use the default browser stack
 
-    # get "/", PageController, :index
+    get "/dashboard", PageController, :index
+    post "/dashboard", ChirpController, :chirp
 
     get "/sign_up", RegistrationController, :new
     post "/sign_up", RegistrationController, :create

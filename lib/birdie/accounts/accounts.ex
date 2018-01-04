@@ -5,6 +5,7 @@ defmodule Birdie.Accounts do
     User
     |> Birdie.Repo.all()
   end
+
   def new_user(params \\ %{}) do
     %User{}
     |> User.changeset(params)
