@@ -5,10 +5,16 @@ defmodule Birdie.Accounts.User do
 
   schema "users" do
     field :password, :string, virtual: true
-    field :hashed_password, :string
+    field :password_hash, :string
     field :email, :string
 
     timestamps()
+  end
+
+  def create_changeset(struct, attrs \\ %{}) do
+    struct
+    |> changeset(attrs)
+    |> put_pass_hash()
   end
 
   def changeset(struct, attrs \\ %{}) do
@@ -21,5 +27,10 @@ defmodule Birdie.Accounts.User do
     struct
     |> cast(attrs, [:username, :password])
     |> validate_required([:username, :password])
+  end
+
+  defp put_pass_hash(%Ecto.Changeset{valid?: true,
+       changes: %{password: password}} = changeset) do
+    change(changeset, Comeonin.Argon2.add_hash(password))
   end
 end
