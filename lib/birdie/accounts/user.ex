@@ -2,11 +2,36 @@ defmodule Birdie.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  defmodule Follower do
+    use Persistence.Schema
+    use Arc.Ecto.Schema
+
+    embedded_schema do
+      field :user_id, :binary_id
+    end
+
+    def changeset(struct, params \\ %{}) do
+      struct
+      |> cast(params, [:user_id])
+    end
+  end
+
+  defmodule Following do
+    use Persistence.Schema
+    use Arc.Ecto.Schema
+
+    embedded_schema do
+      field :user_id, :binary_id
+    end
+  end
 
   schema "users" do
     field :password, :string, virtual: true
     field :password_hash, :string
     field :email, :string
+
+    embeds_many :followers, Follower
+    embeds_many :following, Following
 
     timestamps()
   end
