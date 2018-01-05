@@ -21,4 +21,9 @@ defmodule Birdie.Accounts do
     User
     |> Birdie.Repo.get_by!(%{id: user_id})
   end
+
+  def get_user_by_handle(handle) do
+    User
+    |> Birdie.Repo.get_by(%{handle: handle})
+  end
 end
