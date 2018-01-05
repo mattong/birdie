@@ -4,9 +4,9 @@ defmodule Birdie.Chirps.Chirp do
 
   schema "chirps" do
     field :content, :string
-    field :timestamp, :date
+    field :timestamp, :naive_datetime
 
-    belongs_to :author, Birdie.Chirps.Author # Birdie.Accounts.User
+    belongs_to :user, Birdie.Accounts.User # Birdie.Accounts.User
 
     timestamps()
   end
@@ -14,8 +14,8 @@ defmodule Birdie.Chirps.Chirp do
   @doc false
   def changeset(%__MODULE__{} = chirp, attrs) do
     chirp
-    |> cast(attrs, [:content, :timestamp])
-    |> validate_required([:content, :timestamp])
+    |> cast(attrs, [:content, :timestamp, :user_id])
+    |> validate_required([:content])
   end
 end
 

@@ -16,7 +16,7 @@ defmodule BirdieWeb.SessionController do
         user = Accounts.get_user(conn.assigns.current_user.id)
         conn
         |> put_flash(:info, "Welcome back!")
-        |> redirect(to: session_path(conn, :new))
+        |> redirect(to: page_path(conn, :index))
       {:error, _, _} ->
         conn
         |> put_flash(:error, "Nope!")
