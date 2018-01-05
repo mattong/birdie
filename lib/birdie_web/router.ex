@@ -29,6 +29,8 @@ defmodule BirdieWeb.Router do
     delete "/sign_out", SessionController, :delete
 
     resources "/users", UserController
+
+    get "profile/:user_name", ProfileController, :index
   end
 end
 

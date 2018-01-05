@@ -3,11 +3,11 @@ defmodule Birdie.Accounts.User do
   import Ecto.Changeset
 
   defmodule Follower do
-    use Persistence.Schema
-    use Arc.Ecto.Schema
+    use Ecto.Schema
 
     embedded_schema do
       field :user_id, :binary_id
+      field :handle, :string
     end
 
     def changeset(struct, params \\ %{}) do
@@ -17,11 +17,16 @@ defmodule Birdie.Accounts.User do
   end
 
   defmodule Following do
-    use Persistence.Schema
-    use Arc.Ecto.Schema
+    use Ecto.Schema
 
     embedded_schema do
       field :user_id, :binary_id
+      field :handle, :string
+    end
+
+    def changeset(struct, params \\ %{}) do
+      struct
+      |> cast(params, [:user_id])
     end
   end
 
@@ -29,12 +34,21 @@ defmodule Birdie.Accounts.User do
     field :password, :string, virtual: true
     field :password_hash, :string
     field :email, :string
+    field :handle, :string
+    field :name, :string
 
     embeds_many :followers, Follower
     embeds_many :following, Following
 
     timestamps()
   end
+
+  @valid_attrs [
+    :password,
+    :email,
+    :handle,
+    :name
+  ]
 
   def create_changeset(struct, attrs \\ %{}) do
     struct
@@ -44,7 +58,7 @@ defmodule Birdie.Accounts.User do
 
   def changeset(struct, attrs \\ %{}) do
     struct
-    |> cast(attrs, [:password, :email])
+    |> cast(attrs, @valid_attrs)
     |> validate_required([:password, :email])
   end
 

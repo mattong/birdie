@@ -1,0 +1,7 @@
+=form_for @changeset, @action, fn f ->
+  .form-group
+    = label f, :content, class: "control-label"
+    = textarea f, :content, class: "form-control", required: true
+    = error_tag f, :content
+  .form-group.-submit
+    =submit "Chirp mo 'to!"

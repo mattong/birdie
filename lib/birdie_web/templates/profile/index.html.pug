@@ -1,6 +1,6 @@
-.jumbotron
-  h2 WELCOME TO BIRDIE
-   p= @user.name
+h2 Welcome to your profile,
+ =@user.name
+
 .container
   .col-md-6.col-offset-3
     =render "form.html", conn: @conn, changeset: @changeset, action: chirp_path(@conn, :chirp)
@@ -8,4 +8,3 @@ ul
 = for chirp <- @chirps do
   li= "#{chirp.content}, #{chirp.inserted_at}"
 
-a(href=profile_path(@conn, :index, @user.handle))= gettext "Profile mo 'to"
