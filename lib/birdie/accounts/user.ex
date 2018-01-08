@@ -1,34 +1,10 @@
 defmodule Birdie.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
-
-  defmodule Follower do
-    use Ecto.Schema
-
-    embedded_schema do
-      field :user_id, :binary_id
-      field :handle, :string
-    end
-
-    def changeset(struct, params \\ %{}) do
-      struct
-      |> cast(params, [:user_id])
-    end
-  end
-
-  defmodule Following do
-    use Ecto.Schema
-
-    embedded_schema do
-      field :user_id, :binary_id
-      field :handle, :string
-    end
-
-    def changeset(struct, params \\ %{}) do
-      struct
-      |> cast(params, [:user_id])
-    end
-  end
+  alias Birdie.Accounts.{
+    User,
+    Follow
+  }
 
   schema "users" do
     field :password, :string, virtual: true
@@ -37,8 +13,10 @@ defmodule Birdie.Accounts.User do
     field :handle, :string
     field :name, :string
 
-    embeds_many :followers, Follower
-    embeds_many :following, Following
+    has_many :chirps, Birdie.Chirps.Chirp
+
+    many_to_many :following, User, join_through: Follow
+    many_to_many :follower, User, join_through: Follow
 
     timestamps()
   end
