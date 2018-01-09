@@ -36,4 +36,10 @@ defmodule Birdie.Accounts do
     |> Follow.changeset(params)
     |> Repo.insert()
   end
+
+  def does_user_follow(follower_id, following_id) do
+    Follow
+    |> Repo.get_by(%{follower_id: follower_id, following_id: following_id})
+    |> is_map()
+  end
 end
