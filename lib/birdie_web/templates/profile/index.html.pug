@@ -1,0 +1,14 @@
+h2 Welcome to your profile,
+ =@user.name
+
+.container
+  .col-md-6.col-offset-3
+    =render "form.html", conn: @conn, changeset: @changeset, action: chirp_path(@conn, :chirp)
+ul
+= for chirp <- @chirps do
+  li= "#{chirp.content}, #{chirp.inserted_at}"
+
+= unless @conn.assigns.current_user == @user do
+  = form_for @conn, follows_path(@conn, :follow), fn f ->
+    = hidden_input f, :user_id, value: @user.id
+    = submit "Follow me!"

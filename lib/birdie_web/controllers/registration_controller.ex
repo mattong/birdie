@@ -13,7 +13,7 @@ defmodule BirdieWeb.RegistrationController do
       {:ok, user} -> 
         conn
         |> put_flash(:info, "Welcome to Birdie")
-        |> redirect(to: registration_path(conn, :new))
+        |> redirect(to: session_path(conn, :new))
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
         |> put_flash(:error, "Something went wrong!")
