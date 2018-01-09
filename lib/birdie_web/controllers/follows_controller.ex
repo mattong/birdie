@@ -7,8 +7,6 @@ defmodule BirdieWeb.FollowsController do
     following = Accounts.get_user(user_id)
     case Accounts.follow_user(%{follower: follower, following: following}) do
       {:ok, %{following: following}} ->
-        require IEx
-        IEx.pry
         conn
         |> put_flash(:info, "You have successfuly followed #{following.name}")
         |> redirect(to: profile_path(conn, :index, following.handle))
