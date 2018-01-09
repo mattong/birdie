@@ -26,11 +26,13 @@ defmodule BirdieWeb.Router do
     get "/", SessionController, :new
     post "/", SessionController, :create
 
-    delete "/sign_out", SessionController, :delete
+    get "/sign_out", SessionController, :delete
 
     resources "/users", UserController
 
-    get "profile/:user_name", ProfileController, :index
+    get "/:user_name", ProfileController, :index
+
+    post "/follow", FollowsController, :follow
   end
 end
 

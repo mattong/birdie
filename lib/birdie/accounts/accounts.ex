@@ -32,7 +32,7 @@ defmodule Birdie.Accounts do
   end
 
   def follow_user(params) do
-    %User{}
+    %Follow{}
     |> Follow.changeset(params)
     |> Repo.insert()
   end
