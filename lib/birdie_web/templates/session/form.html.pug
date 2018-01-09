@@ -10,4 +10,5 @@
     = error_tag f, :email
 
   .form-group.-submit
-    = submit "SIGN IN"
+    = submit "Sign in"
+    = link "Sign up", to: registration_path(@conn, :new)
