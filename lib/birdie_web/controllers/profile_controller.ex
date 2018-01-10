@@ -8,6 +8,9 @@ defmodule BirdieWeb.ProfileController do
     chirps = Dashboard.list_user_chirps(current_user.id)
     changeset = Dashboard.new_chirp()
     follows = Accounts.does_user_follow(current_user.id, user.id)
+    following = Accounts.get_following(user.id)
+    followers = Accounts.get_followers(user.id)
+
     show_button = 
       current_user
       |> is_current_user?(user)
@@ -17,6 +20,9 @@ defmodule BirdieWeb.ProfileController do
       user: user,
       chirps: chirps,
       show_button: show_button,
+      following_list: following,
+      followers_list: followers,
+      current_user: current_user,
       changeset: changeset)
   end
 
