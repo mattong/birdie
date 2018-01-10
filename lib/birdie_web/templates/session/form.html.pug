@@ -1,4 +1,4 @@
-= form_for @changeset, @action, [multipart: true], fn f ->
+= form_for @changeset, @action, [class: "session-form", multipart: true], fn f ->
   .form-group
     = label f, :email, class: "control-label"
     = email_input f, :email, class: "form-control", required: true
@@ -9,5 +9,5 @@
     = password_input f, :password, class: "form-control", required: true
     = error_tag f, :email
 
-  .form-group.-submit
-    = submit "SIGN IN"
+  .form-group
+    = submit "sign in", class: "btn btn-vaporwave"

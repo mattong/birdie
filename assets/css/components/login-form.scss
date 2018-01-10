@@ -1,0 +1,26 @@
+@import '../common';
+
+.session-form {
+  background-color: $white;
+  border-radius: 10px;
+  font-family: $rubik;
+  padding: 24px;
+  width: 480px;
+
+  > .form-group > .control-label {
+    color: black;
+    text-transform: lowercase;
+  }
+
+  > .form-group > .form-control {
+    font-family: $lato;
+  }
+
+  > .form-group > .btn-vaporwave {
+    color: $white;
+    background: $btn-light-blue;
+    background: -moz-linear-gradient(-45deg, #{$btn-light-blue} 0%, #{$btn-blue} 100%);
+    background: -webkit-linear-gradient(-45deg, #{$btn-light-blue} 0%, #{$btn-blue} 100%);
+    background: linear-gradient(135deg, #{$btn-light-blue} 0%, #{$btn-blue} 100%);
+  }
+}

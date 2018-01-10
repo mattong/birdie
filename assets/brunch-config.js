@@ -40,7 +40,7 @@ exports.config = {
   // Phoenix paths configuration
   paths: {
     // Dependencies and current project directories to watch
-    watched: ["static", "css", "js", "vendor"],
+    watched: ["static", "css", "js", "vendor", "scss", "fonts"],
     // Where to compile files to
     public: "../priv/static"
   },
@@ -56,6 +56,10 @@ exports.config = {
         includePaths: ["node_modules/bootstrap/scss", "node_modules/font-awesowe/scss"],
         precision: 8
       }
+    },
+    copycat: {
+      verbose: false,
+      onlyChanged: true
     }
   },
 
@@ -70,6 +74,8 @@ exports.config = {
     globals: {
       $: 'jquery',
       jQuery: 'jquery',
+      Tether: 'tether',
+      Popper: 'popper.js',
       bootstrap: 'bootstrap'
     }
   }

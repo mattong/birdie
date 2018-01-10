@@ -1,0 +1,23 @@
+@import '../common';
+
+.splash-page {
+  background: $gradient-teal;
+  background: -moz-linear-gradient(-45deg, #{$gradient-teal} 0%, #{$gradient-pink} 100%);
+  background: -webkit-linear-gradient(-45deg, #{$gradient-teal} 0%, #{$gradient-pink} 100%);
+  background: linear-gradient(135deg, #{$gradient-teal} 0%, #{$gradient-pink} 100%);
+  display: flex;
+  align-items: center;
+  height: 100vh;
+
+  > .content {
+    color: $white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  > .content > .text > .logo {
+    height: 120px;
+    width: auto;
+  }
+}
