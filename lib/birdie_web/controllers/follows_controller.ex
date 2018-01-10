@@ -16,4 +16,14 @@ defmodule BirdieWeb.FollowsController do
         |> redirect(to: profile_path(conn, :index, following))
     end
   end
+
+  def unfollow(%Plug.Conn{assigns: %{current_user: current_user}} = conn, %{"user_id" => user_id}) do
+    follower = current_user
+    following = Accounts.get_user(user_id)
+    Accounts.unfollow_user(follower, following)
+
+    conn
+    |> put_flash(:info, "You have successfuly unfollowed #{following.name}")
+    |> redirect(to: profile_path(conn, :index, following.handle))
+  end
 end

@@ -33,6 +33,8 @@ defmodule BirdieWeb.Router do
     get "/:user_name", ProfileController, :index
 
     post "/follow", FollowsController, :follow
+
+    post "/unfollow", FollowsController, :unfollow
   end
 end
 

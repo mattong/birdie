@@ -8,7 +8,12 @@ ul
 = for chirp <- @chirps do
   li= "#{chirp.content}, #{chirp.inserted_at}"
 
-= unless @conn.assigns.current_user == @user do
+= if @show_button == :follow_button do
   = form_for @conn, follows_path(@conn, :follow), fn f ->
     = hidden_input f, :user_id, value: @user.id
-    = submit "Follow me!"
+    = submit "Follow", class: "btn btn-primary"
+
+= if @show_button == :unfollow_button do
+  = form_for @conn, follows_path(@conn, :unfollow), fn f ->
+    = hidden_input f, :user_id, value: @user.id
+    = submit "Unfollow", class: "btn btn-danger"
