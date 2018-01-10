@@ -20,7 +20,10 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: "css/app.css",
+      order: {
+        after: ["priv/static/css/app.scss"]
+      }
     },
     templates: {
       joinTo: "js/app.js"
@@ -37,7 +40,7 @@ exports.config = {
   // Phoenix paths configuration
   paths: {
     // Dependencies and current project directories to watch
-    watched: ["static", "css", "js", "vendor"],
+    watched: ["static", "css", "js", "vendor", "scss", "fonts"],
     // Where to compile files to
     public: "../priv/static"
   },
@@ -47,6 +50,16 @@ exports.config = {
     babel: {
       // Do not use ES6 compiler in vendor code
       ignore: [/vendor/]
+    },
+    sass: {
+      options: {
+        includePaths: ["node_modules/bootstrap/scss", "node_modules/font-awesowe/scss"],
+        precision: 8
+      }
+    },
+    copycat: {
+      verbose: false,
+      onlyChanged: true
     }
   },
 
@@ -57,6 +70,13 @@ exports.config = {
   },
 
   npm: {
-    enabled: true
+    enabled: true,
+    globals: {
+      $: 'jquery',
+      jQuery: 'jquery',
+      Tether: 'tether',
+      Popper: 'popper.js',
+      bootstrap: 'bootstrap'
+    }
   }
 };
