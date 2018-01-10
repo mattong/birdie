@@ -50,4 +50,18 @@ defmodule Birdie.Accounts do
     |> Repo.get_by(%{follower_id: follower_id, following_id: following_id})
     |> is_map()
   end
+
+  def get_following(user_id) do
+    from([f] in Follow,
+      where: f.follower_id == ^user_id)
+    |> Repo.all()
+    |> Repo.preload([:following])
+  end
+
+  def get_followers(user_id) do
+    from([f] in Follow,
+      where: f.following_id == ^user_id)
+    |> Repo.all()
+    |> Repo.preload([:follower])
+  end
 end
