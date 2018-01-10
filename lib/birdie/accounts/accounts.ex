@@ -1,4 +1,5 @@
 defmodule Birdie.Accounts do
+  import Ecto.Query
   alias Birdie.Repo
   alias Birdie.Accounts.{
     User,
@@ -35,6 +36,13 @@ defmodule Birdie.Accounts do
     %Follow{}
     |> Follow.changeset(params)
     |> Repo.insert()
+  end
+
+  def unfollow_user(%{id: follower_id}, %{id: following_id}) do
+    from([f] in Follow,
+      where: f.follower_id == ^follower_id,
+      where: f.following_id == ^following_id)
+    |> Repo.delete_all()
   end
 
   def does_user_follow(follower_id, following_id) do
