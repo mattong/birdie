@@ -1,5 +1,9 @@
 # Birdie
 
+Once you're done cloning the repository, run the following commands:
+  * mix ecto.setup
+  * cd assets && yarn
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
