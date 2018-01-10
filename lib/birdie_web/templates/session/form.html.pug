@@ -11,3 +11,7 @@
 
   .form-group
     = submit "sign in", class: "btn btn-vaporwave"
+
+  .form-group.registration
+    span Not yet a user?
+    = link "Create an account", to: registration_path(@conn, :new)
