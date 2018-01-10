@@ -56,6 +56,7 @@ defmodule Birdie.Accounts do
       where: f.follower_id == ^user_id)
     |> Repo.all()
     |> Repo.preload([:following])
+    |> Enum.map(fn(x) -> x.following end)
   end
 
   def get_followers(user_id) do
@@ -63,5 +64,6 @@ defmodule Birdie.Accounts do
       where: f.following_id == ^user_id)
     |> Repo.all()
     |> Repo.preload([:follower])
+    |> Enum.map(fn(x) -> x.follower end)
   end
 end
