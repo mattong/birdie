@@ -1,0 +1,22 @@
+use Mix.Config
+
+case Mix.env do
+  :dev ->
+    config :birdie, Birdie.Repo,
+      adapter: Ecto.Adapters.Postgres,
+      username: "postgres",
+      password: "postgres",
+      database: "birdie_dev",
+      hostname: "localhost",
+      pool_size: 10
+  :test ->
+    # Configure your database
+    config :birdie, Birdie.Repo,
+      adapter: Ecto.Adapters.Postgres,
+      username: "postgres",
+      password: "postgres",
+      database: "birdie_test",
+      hostname: "localhost",
+      pool: Ecto.Adapters.SQL.Sandbox
+end
+

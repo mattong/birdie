@@ -10,10 +10,4 @@ config :birdie, BirdieWeb.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :birdie, Birdie.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "birdie_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+import_config "database.exs"
