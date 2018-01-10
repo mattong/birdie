@@ -22,6 +22,7 @@ defmodule BirdieWeb.ProfileController do
       show_button: show_button,
       following_list: following,
       followers_list: followers,
+      current_user: current_user,
       changeset: changeset)
   end
 

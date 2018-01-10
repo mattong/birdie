@@ -1,5 +1,11 @@
-h2 Welcome to your profile,
- =@user.name
+= if @current_user.id == @user.id do
+  h2 Welcome to your profile,
+   =@user.name
+  .container
+    .col-md-6.col-offset-3
+      =render "form.html", conn: @conn, changeset: @changeset, action: chirp_path(@conn, :chirp)
+- else
+  h2= "@#{@user.handle}"
 
 = if @show_button == :follow_button do
   = form_for @conn, follows_path(@conn, :follow), fn f ->
@@ -11,22 +17,19 @@ h2 Welcome to your profile,
     = hidden_input f, :user_id, value: @user.id
     = submit "Unfollow", class: "btn btn-danger"
 
-.container
-  .col-md-6.col-offset-3
-    =render "form.html", conn: @conn, changeset: @changeset, action: chirp_path(@conn, :chirp)
 ul
 = for chirp <- @chirps do
   li= "#{chirp.content}, #{chirp.inserted_at}"
 
 h3 Following
 ul
-  = for %{following: %{name: name, handle: handle}} <- @following_list do
-    li= "#{name}"
-      =link "@#{handle}", to: profile_path(@conn, :index, handle)
+  = for f <- @following_list do
+    li= "#{f.name}"
+      =link "@#{f.handle}", to: profile_path(@conn, :index, f.handle)
 
 h3 Followers
 ul
-  = for %{follower: %{id: id, name: name, handle: handle}} <- @followers_list do
-    li= "#{name}"
-      =link "@#{handle}", to: profile_path(@conn, :index, handle)
+  = for f <- @followers_list do
+    li= "#{f.name}"
+      =link "@#{f.handle}", to: profile_path(@conn, :index, f.handle)
 
