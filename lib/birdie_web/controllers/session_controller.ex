@@ -14,7 +14,6 @@ defmodule BirdieWeb.SessionController do
   def create(conn, %{"user" => %{"email" => email, "password" => password}}) do
     case Birdie.Plug.Auth.user_auth(conn, email, password, repo: Repo) do
       {:ok, conn} ->
-        # user = Repo.get(User, conn.assigns.current_user.id)
         user = Accounts.get_user(conn.assigns.current_user.id)
         conn
         |> put_flash(:info, "Welcome back!")
