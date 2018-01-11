@@ -3,9 +3,9 @@ defmodule BirdieWeb.PageController do
   alias Birdie.Accounts
   alias Birdie.Chirps.Dashboard
 
-  def index(conn, _params) do
-    chirps = Dashboard.list()
+  def index(%Plug.Conn{assigns: %{current_user: current_user}} = conn, _params) do
+    chirps = Dashboard.list_user_feed(current_user)
     changeset = Dashboard.new_chirp()
-    render(conn, "index.html", user: conn.assigns.current_user, chirps: chirps, changeset: changeset)
+    render(conn, "index.html", user: current_user, chirps: chirps, changeset: changeset)
   end
 end

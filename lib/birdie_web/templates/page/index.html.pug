@@ -8,6 +8,6 @@
     =render "form.html", conn: @conn, changeset: @changeset, action: chirp_path(@conn, :chirp)
 ul
 = for chirp <- @chirps do
-  li= "#{chirp.content}, #{chirp.inserted_at}"
+  li= "#{chirp.content} | @#{chirp.user.handle}"
 
 a(href=profile_path(@conn, :index, @user.handle))= gettext "Profile mo 'to"
