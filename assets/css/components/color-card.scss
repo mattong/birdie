@@ -1,0 +1,41 @@
+@import '../common';
+
+.color-card {
+  height: 200px;
+  -webkit-box-shadow: 0px 5px 40px -6px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 5px 40px -6px rgba(0,0,0,0.75);
+  box-shadow: 0px 5px 40px -6px rgba(0,0,0,0.75);
+
+  > .name {
+    padding: 8px;
+  }
+
+  > .color {
+    min-height: 140px;
+  }
+
+  > .color.-white {
+    background-color: $white;
+  }
+
+  > .color.-black {
+    background-color: $black;
+  }
+
+  > .color.-gradient-teal {
+    background-color: $gradient-teal;
+  }
+
+  > .color.-gradient-pink {
+    background-color: $gradient-pink;
+  }
+
+  > .color.-gradient-light-blue {
+    background-color: $gradient-light-blue;
+  }
+
+  > .color.-gradient-blue {
+    background-color: $gradient-blue;
+  }
+
+}
