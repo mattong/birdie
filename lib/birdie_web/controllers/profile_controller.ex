@@ -5,7 +5,7 @@ defmodule BirdieWeb.ProfileController do
 
   def index(%Plug.Conn{assigns: %{current_user: current_user}} = conn, %{"user_name" => username}) do
     user = Accounts.get_user_by_handle(username)
-    chirps = Dashboard.list_user_chirps(current_user.id)
+    chirps = Dashboard.list_user_chirps(user.id)
     changeset = Dashboard.new_chirp()
     follows = Accounts.does_user_follow(current_user.id, user.id)
     following = Accounts.get_following(user.id)
