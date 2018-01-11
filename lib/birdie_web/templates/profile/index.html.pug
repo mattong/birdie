@@ -19,7 +19,8 @@
 
 ul
 = for chirp <- @chirps do
-  li= "#{chirp.content}, #{chirp.inserted_at}"
+  li= "#{chirp.content} | @#{chirp.user.handle}"
+
 
 h3 Following
 ul
