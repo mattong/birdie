@@ -4,6 +4,7 @@ defmodule BirdieWeb.SessionController do
     Accounts,
     Repo
   }
+  alias Birdie.Chirps.Chirper
 
   plug :put_layout, "splash.html"
 
@@ -14,7 +15,7 @@ defmodule BirdieWeb.SessionController do
   def create(conn, %{"user" => %{"email" => email, "password" => password}}) do
     case Birdie.Plug.Auth.user_auth(conn, email, password, repo: Repo) do
       {:ok, conn} ->
-        user = Accounts.get_user(conn.assigns.current_user.id)
+        user = Chirper.get_user(conn.assigns.current_user.id)
         conn
         |> put_flash(:info, "Welcome back!")
         |> redirect(to: page_path(conn, :index))

@@ -6,7 +6,7 @@ defmodule Birdie.Chirps.Chirp do
     field :content, :string
     field :timestamp, :naive_datetime
 
-    belongs_to :user, Birdie.Accounts.User # Birdie.Accounts.User
+    belongs_to :author, Birdie.Chirps.Author # Birdie.Accounts.User
 
     timestamps()
   end
@@ -14,7 +14,7 @@ defmodule Birdie.Chirps.Chirp do
   @doc false
   def changeset(%__MODULE__{} = chirp, attrs) do
     chirp
-    |> cast(attrs, [:content, :timestamp, :user_id])
+    |> cast(attrs, [:content, :timestamp, :author_id])
     |> validate_required([:content])
   end
 end

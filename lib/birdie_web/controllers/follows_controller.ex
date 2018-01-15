@@ -1,14 +1,14 @@
 defmodule BirdieWeb.FollowsController do
   use BirdieWeb, :controller
-  alias Birdie.Accounts
+  alias Birdie.Chirps.Chirper
 
   def follow(%Plug.Conn{assigns: %{current_user: current_user}} = conn, %{"user_id" => user_id}) do
-    follower = current_user
-    following = Accounts.get_user(user_id)
-    case Accounts.follow_user(%{follower: follower, following: following}) do
+    follower = Chirper.get_user(current_user.id)
+    following = Chirper.get_user(user_id)
+    case Chirper.follow_user(%{follower: follower, following: following}) do
       {:ok, %{following: following}} ->
         conn
-        |> put_flash(:info, "You have successfuly followed #{following.name}")
+        |> put_flash(:info, "You have successfuly followed #{following.handle}")
         |> redirect(to: profile_path(conn, :index, following.handle))
       {:error, _} ->
         conn
@@ -18,12 +18,12 @@ defmodule BirdieWeb.FollowsController do
   end
 
   def unfollow(%Plug.Conn{assigns: %{current_user: current_user}} = conn, %{"user_id" => user_id}) do
-    follower = current_user
-    following = Accounts.get_user(user_id)
-    Accounts.unfollow_user(follower, following)
+    follower = Chirper.get_user(current_user.id)
+    following = Chirper.get_user(user_id)
+    Chirper.unfollow_user(follower, following)
 
     conn
-    |> put_flash(:info, "You have successfuly unfollowed #{following.name}")
+    |> put_flash(:info, "You have successfuly unfollowed #{following.handle}")
     |> redirect(to: profile_path(conn, :index, following.handle))
   end
 end

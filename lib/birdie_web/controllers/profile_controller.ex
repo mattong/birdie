@@ -1,17 +1,19 @@
 defmodule BirdieWeb.ProfileController do
   use BirdieWeb, :controller
-  alias Birdie.Accounts
-  alias Birdie.Chirps.Dashboard
+  alias Birdie.Chirps.{
+    Dashboard,
+    Chirper
+  }
 
   def index(%Plug.Conn{assigns: %{current_user: current_user}} = conn, %{"user_name" => username}) do
-    user = Accounts.get_user_by_handle(username)
+    user = Chirper.get_user_by_handle(username)
     chirps = Dashboard.list_user_chirps(user.id)
     changeset = Dashboard.new_chirp()
-    follows = Accounts.does_user_follow(current_user.id, user.id)
-    following = Accounts.get_following(user.id)
-    followers = Accounts.get_followers(user.id)
+    follows = Chirper.does_user_follow(current_user.id, user.id)
+    following = Chirper.get_following(user.id)
+    followers = Chirper.get_followers(user.id)
 
-    show_button = 
+    show_button =
       current_user
       |> is_current_user?(user)
       |> show_button(follows)
