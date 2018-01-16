@@ -1,0 +1,15 @@
+<div id="chirp-<%= @chirp.id %>" class="chirp" data-chirp-id="<%= @chirp.id %>">
+  <div class="row">
+    <div class="col-xs-4">
+      <strong class="chirp-author"><%= @author %></strong>
+    </div>
+    <div class="col-xs-4">
+      <em><%= @chirp.inserted_at %></em>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= @chirp.content %>
+    </div>
+  </div>
+</div>
