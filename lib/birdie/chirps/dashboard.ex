@@ -1,7 +1,6 @@
 defmodule Birdie.Chirps.Dashboard do
-  alias Birdie.Chirps.Chirp
-  alias Birdie.Accounts.{
-    User,
+  alias Birdie.Chirps.{
+    Chirp,
     Follow
   }
   alias Birdie.Repo
@@ -25,26 +24,20 @@ defmodule Birdie.Chirps.Dashboard do
 
   def list_user_chirps(user_id) do
     Chirp
-    |> where(user_id: ^user_id)
-    |> preload(:user)
+    |> where(author_id: ^user_id)
+    |> preload(:author)
     |> order_by([desc: :inserted_at])
     |> Repo.all()
   end
 
   def list_user_feed(%{id: user_id}) do
-    following_list =
-      from(
-        f in Follow,
-        where: f.follower_id == ^user_id,
-        select: f.following_id
-      )
-      |> Repo.all()
-
     chirp_query = from(c in Chirp,
-      where: c.user_id in ^following_list,
-      or_where: c.user_id == ^user_id,
+      join: f in Follow,
+      on: f.following_id == c.author_id,
+      where: f.follower_id == ^user_id,
+      or_where: c.author_id == ^user_id,
       order_by: [desc: :inserted_at],
-      preload: :user
+      preload: :author
     )
 
     Repo.all(chirp_query)

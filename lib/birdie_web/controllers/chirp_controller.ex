@@ -5,7 +5,7 @@ defmodule BirdieWeb.ChirpController do
   def chirp(conn, %{"chirp" => chirp}) do
     chirp =
       chirp
-      |> Map.put("user_id", conn.assigns.current_user.id)
+      |> Map.put("author_id", conn.assigns.current_user.id)
 
     case Dashboard.create_chirp(chirp) do
       {:ok, _} ->
@@ -13,6 +13,7 @@ defmodule BirdieWeb.ChirpController do
         |> put_flash(:info, "You chirped!")
         |> redirect(to: page_path(conn, :index))
       {:error, _, _} ->
+        raise "lele"
         conn
         |> put_flash(:error, "Something went wrong!")
         |> redirect(to: page_path(conn, :index))

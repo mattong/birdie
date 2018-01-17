@@ -8,24 +8,16 @@ defmodule Birdie.Accounts.User do
 
   schema "users" do
     field :password, :string, virtual: true
+    field :password_confirmation, :string, virtual: true
     field :password_hash, :string
     field :email, :string
-    field :handle, :string
-    field :name, :string
-
-    has_many :chirps, Birdie.Chirps.Chirp
-
-    many_to_many :following, User, join_through: Follow
-    many_to_many :follower, User, join_through: Follow
 
     timestamps()
   end
 
   @valid_attrs [
     :password,
-    :email,
-    :handle,
-    :name
+    :email
   ]
 
   def create_changeset(struct, attrs \\ %{}) do

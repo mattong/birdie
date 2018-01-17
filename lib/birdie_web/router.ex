@@ -23,6 +23,9 @@ defmodule BirdieWeb.Router do
     get "/sign_up", RegistrationController, :new
     post "/sign_up", RegistrationController, :create
 
+    get "/new_profile", RegistrationController, :new_profile
+    post "/welcome", RegistrationController, :create_user_profile
+
     get "/", SessionController, :new
     post "/", SessionController, :create
 

@@ -1,6 +1,6 @@
 = if @current_user.id == @user.id do
   h2 Welcome to your profile,
-   =@user.name
+   =@user.first_name
   .container
     .col-md-6.col-offset-3
       =render "form.html", conn: @conn, changeset: @changeset, action: chirp_path(@conn, :chirp)
@@ -19,18 +19,18 @@
 
 ul
 = for chirp <- @chirps do
-  li= "#{chirp.content} | @#{chirp.user.handle}"
+  li= "#{chirp.content} | @#{chirp.author.handle}"
 
 
 h3 Following
 ul
   = for f <- @following_list do
-    li= "#{f.name}"
+    li= "#{f.first_name}"
       =link "@#{f.handle}", to: profile_path(@conn, :index, f.handle)
 
 h3 Followers
 ul
   = for f <- @followers_list do
-    li= "#{f.name}"
+    li= "#{f.first_name}"
       =link "@#{f.handle}", to: profile_path(@conn, :index, f.handle)
 
