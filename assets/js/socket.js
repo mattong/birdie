@@ -26,16 +26,39 @@ let chirpButton = document.querySelector("#chirp_button")
 
 chirpButton.addEventListener("click", event => {
     event.preventDefault()
-    $.post("/dashboard", {chirp: {content: chirpInput.value}})
-    alert("Yes!")
     channel.push("new_chirp", {body: chirpInput.value})
-    chirpInput.value = ""
 })
 
+const buildFeed = (chirp) => {
+    return(
+    `<div id="chirp-${chirp.id} class="chirp">
+       <div class="row">
+         <div class="col-xs-4">
+           <strong class="chirp-author"> ${chirp.author} </strong>
+         </div>
+       </div>
+       <div class="col-xs-12">
+         ${chirp.content}
+       </div>
+     </div>`
+    )
+}
+
 channel.on("new_chirp", payload => {
-    let messageItem = document.createElement("div");
-    messageItem.innerText = `${payload.body}`
-    feedContainer.appendChild(messageItem)
+    console.log(payload)
+    $.post("/dashboard", {chirp: {content: payload.body}})
+        .then (
+          $.get('/api/mattong')
+            .then( response => {
+              $(feedContainer).empty()
+              Object.keys(response.chirps).map(function(key, index) {
+                  const chirpElement = buildFeed(response.chirps[key])
+                  const chirpHtml = $.parseHTML(chirpElement)
+                  $(feedContainer).append(chirpHtml)
+              })
+              chirpInput.value = ""
+            })
+        )
 })
 
 channel.join()
