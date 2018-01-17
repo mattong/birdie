@@ -1,3 +1,15 @@
+@import "modularscale";
+
+//Fonts
+$modularscale: (
+  base: 14px,
+  ratio: 1.2
+);
+
+$rubik: 'Rubik', sans-serif;
+$lato: 'Lato', sans-serif;
+
+
 //Application colors
 $white: #ffffff;
 $black: #111111;

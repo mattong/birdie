@@ -16,6 +16,7 @@ defmodule BirdieWeb.Router do
 
   scope "/", BirdieWeb do
     pipe_through :browser # Use the default browser stack
+    get "/styleguide", StyleguideController, :index
 
     get "/dashboard", PageController, :index
     post "/dashboard", ChirpController, :chirp
@@ -38,6 +39,7 @@ defmodule BirdieWeb.Router do
     post "/follow", FollowsController, :follow
 
     post "/unfollow", FollowsController, :unfollow
+
   end
 end
 

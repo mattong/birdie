@@ -1,0 +1,9 @@
+@import '../common';
+
+.btn-vaporwave {
+  color: $white;
+  background: $gradient-light-blue;
+  background: -moz-linear-gradient(-45deg, #{$gradient-light-blue} 0%, #{$gradient-blue} 100%);
+  background: -webkit-linear-gradient(-45deg, #{$gradient-light-blue} 0%, #{$gradient-blue} 100%);
+  background: linear-gradient(135deg, #{$gradient-light-blue} 0%, #{$gradient-blue} 100%);
+}

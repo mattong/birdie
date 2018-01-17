@@ -1,0 +1,9 @@
+@import '../common';
+
+.styleguide-block {
+  padding: 80px;
+
+  > .title {
+    letter-spacing: 5px;
+  }
+}
