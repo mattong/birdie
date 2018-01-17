@@ -5,13 +5,19 @@ defmodule BirdieWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    plug :protect_from_forgery
+    # plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Birdie.Plug.Auth, repo: Birdie.Repo
   end
 
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  scope "/api", BirdieWeb.Api, as: :api do
+    pipe_through :api
+
+    get "/:handle", FeedController, :chirps
   end
 
   scope "/", BirdieWeb do

@@ -1,7 +1,8 @@
 defmodule Birdie.Chirps.Dashboard do
   alias Birdie.Chirps.{
     Chirp,
-    Follow
+    Follow,
+    Author
   }
   alias Birdie.Repo
   import Ecto.Query
@@ -32,10 +33,12 @@ defmodule Birdie.Chirps.Dashboard do
 
   def list_user_feed(%{id: user_id}) do
     chirp_query = from(c in Chirp,
-      join: f in Follow,
+      left_join: a in Author,
+      on: c.author_id == a.id,
+      right_join: f in Follow,
       on: f.following_id == c.author_id,
-      where: f.follower_id == ^user_id,
-      or_where: c.author_id == ^user_id,
+      where: c.author_id == ^user_id,
+      or_where: f.follower_id == ^user_id,
       order_by: [desc: :inserted_at],
       preload: :author
     )

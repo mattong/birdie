@@ -13,7 +13,6 @@ defmodule BirdieWeb.ChirpController do
         |> put_flash(:info, "You chirped!")
         |> redirect(to: page_path(conn, :index))
       {:error, _, _} ->
-        raise "lele"
         conn
         |> put_flash(:error, "Something went wrong!")
         |> redirect(to: page_path(conn, :index))
