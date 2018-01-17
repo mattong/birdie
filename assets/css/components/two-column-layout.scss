@@ -1,0 +1,21 @@
+@import '../common';
+
+.two-column-layout {
+  & {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .heading {
+    color: $white; 
+    width: 50%;
+    flex: 0 1 auto;
+  }
+  
+  .form {
+    flex: 1 1 auto;
+    max-width: 40%;
+  }
+}
