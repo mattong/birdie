@@ -18,4 +18,13 @@
     flex: 1 1 auto;
     max-width: 40%;
   }
+
+  .heading > .logo {
+    height: 100px;
+    margin-bottom: 24px;
+  }
+
+  .heading > h1 {
+    margin-bottom: 8px;
+  }
 }

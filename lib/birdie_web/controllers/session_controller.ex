@@ -6,8 +6,6 @@ defmodule BirdieWeb.SessionController do
   }
   alias Birdie.Chirps.Chirper
 
-  plug :put_layout, "splash.html"
-
   def new(conn, _) do
     render conn, "new.html", changeset: Accounts.new_user(), action: session_path(conn, :create)
   end
