@@ -1,3 +1,6 @@
 .container
-  .col-md-6.col-offset-3
-    =render "user_form.html", conn: @conn, changeset: @changeset, action: registration_path(@conn, :create)
+  .two-column-layout
+    .form
+      =render "user_form.html", conn: @conn, changeset: @changeset, action: registration_path(@conn, :create)
+    .heading
+      h1 The first step to sharing every event of your life to the world.
