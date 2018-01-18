@@ -9,9 +9,9 @@
     = password_input f, :password, class: "form-control", required: true
     = error_tag f, :password
 
-  .form-group.-submit
+  .form-group.item.-submit
     = submit "Create an account", class: "btn btn-vaporwave"
 
-  .form-group.registration
+  .text
     span Already have an account?
-    = link "Sign in", to: session_path(@conn, :new)
+      = link "Sign in", to: session_path(@conn, :new)
