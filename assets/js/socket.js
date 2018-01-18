@@ -35,6 +35,7 @@ const buildFeed = (chirp) => {
        <div class="row">
          <div class="col-xs-4">
            <strong class="chirp-author"> ${chirp.author} </strong>
+           <p> ${chirp.timestamp} </p>
          </div>
        </div>
        <div class="col-xs-12">
