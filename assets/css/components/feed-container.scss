@@ -1,0 +1,17 @@
+@import '../common';
+
+.feed-container {
+  padding-top: 72px;
+  display: flex;
+
+  > *.-left {
+    float: left;
+    width: 30%;
+    flex: 0 0 auto;
+  }
+
+  > *.-right {
+    float: right;
+    flex: 1 0 auto;
+  }
+}

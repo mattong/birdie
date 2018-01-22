@@ -1,14 +1,30 @@
-= render BirdieWeb.LayoutView, "navbar.html", user: @user
+= render BirdieWeb.LayoutView, "navbar.html", user: @user, conn: @conn
 
-  h2 WELCOME TO BIRDIE
-   p= @user.first_name
+.feed-container.container
+  .profile-card.-left
+    .icon *insert icon here*
+    .details
+      h2.name= "#{@user.first_name} #{@user.last_name}"
+      p.handle= "@#{@user.handle}"
+      .user-stats
+        .stat
+          .label Chirps
+          .value= "90"
+        .stat
+          .label Followers
+          .value= "90"
+        .stat
+          .label Following
+          .value= "90"
 
-  a(href=session_path(@conn, :delete))= gettext "Sign out!"
-.container
-  #chirp_form.col-md-6.col-offset-3
-    =render "form.html", conn: @conn, changeset: @changeset, user: @user
+#chirp-form.user-timeline.-right
+  =render "form.html", conn: @conn, changeset: @changeset, user: @user
 #feed
   = for chirp <- @chirps do
     =render "chirp.html", chirp: chirp, author: chirp.author.handle
 
+.col-md-6.col-offset-3
+
 a(href=profile_path(@conn, :index, @user.handle))= gettext "Profile mo 'to"
+
+a(href=session_path(@conn, :delete))= gettext "Sign out!"

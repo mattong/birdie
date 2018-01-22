@@ -1,7 +1,9 @@
+@import '../common';
+
 .user-dropdown {
   position: relative;
 
-  ul {
-    position: absolute;
+  > a {
+    color: $a;
   }
 }

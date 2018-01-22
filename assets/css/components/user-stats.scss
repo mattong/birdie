@@ -1,0 +1,17 @@
+@import '../common';
+
+.user-stats {
+  > .stat {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  > .stat > .label,
+  > .stat > .value {
+    display: inline-block;
+  }
+
+  > .stat > .label {
+    font-weight: 700;
+  }
+}

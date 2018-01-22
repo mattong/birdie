@@ -12,5 +12,6 @@
       .search-box
         input(type="text")
         button(type="submit") Search
-      .user-dropdown= "@#{@user.handle}"
+      .user-dropdown
+        a(href=profile_path(@conn, :index, @user.handle))= "@#{@user.handle}"
 
