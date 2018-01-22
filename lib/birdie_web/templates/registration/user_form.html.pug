@@ -1,13 +1,17 @@
-= form_for @changeset, @action, [multipart: true], fn f ->
-  .form-group
-    = label f, :email, class: "control-label"
+= form_for @changeset, @action, [class: "session-form", multipart: true], fn f ->
+  .form-group.item
+    = label f, :email, class: "control-label label"
     = email_input f, :email, class: "form-control", required: true
     = error_tag f, :email
 
-  .form-group
-    =label f, :password, class: "control-label"
+  .form-group.item
+    =label f, :password, class: "control-label label"
     = password_input f, :password, class: "form-control", required: true
     = error_tag f, :password
 
-  .form-group.-submit
-    = submit "Create an account"
+  .form-group.item.-submit
+    = submit "Create an account", class: "btn btn-vaporwave"
+
+  .text
+    span Already have an account?
+      = link "Sign in", to: session_path(@conn, :new)

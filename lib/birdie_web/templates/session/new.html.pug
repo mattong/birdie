@@ -1,7 +1,8 @@
-.content
-  .text
-    img.logo(src="/images/birdie-logo-large.svg")
-    h1 welcome to birdie
-    h3 it's twitter, but vaporwave
-
-  = render "form.html", conn: @conn, changeset: @changeset, action: @action
+.container
+  .two-column-layout
+    .heading
+      img.logo(src="/images/birdie-logo-large.svg")
+      h1 Welcome to birdie
+      h3 It's twitter, but vaporwave
+    .form
+      = render "form.html", conn: @conn, changeset: @changeset, action: @action

@@ -5,7 +5,6 @@
   border-radius: 10px;
   font-family: $rubik;
   padding: 24px;
-  width: 480px;
 
   > .item > .label {
     color: black;
@@ -15,9 +14,17 @@
   > .item > .control {
     font-family: $lato;
   }
+  
+  > .item.-submit {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 36px;
+  } 
 
-  > .registration {
+  > .text {
     color: $black;
     font-family: $lato;
+    font-weight: 400;
+    text-align: right;
   }
 }

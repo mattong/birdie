@@ -1,19 +1,21 @@
-= form_for @changeset, @action, [multipart: true], fn f ->
-  .form-group
-    = label f, :first_name, class: "control-label"
+= form_for @changeset, @action, [class: "session-form", multipart: true], fn f ->
+  .form-group.item
+    = label f, :first_name, class: "control-label label"
     = text_input f, :first_name, class: "form-control", required: true
     = error_tag f, :first_name
 
-  .form-group
-    = label f, :last_name, class: "control-label"
+  .form-group.item
+    = label f, :last_name, class: "control-label label"
     = text_input f, :last_name, class: "form-control", required: true
     = error_tag f, :last_name
 
-  .form-group
-    = label f, :handle, class: "control-label"
+  .form-group.item
+    = label f, :handle, class: "control-label label"
     = text_input f, :handle, class: "form-control", required: true
     = error_tag f, :handle
 
     = hidden_input f, :user_id, value: @conn.assigns.user_id
   .form-group
-    = submit "Create Profile"
+
+  .form-group.item.-submit
+    = submit "Create Profile", class: "btn btn-vaporwave"
