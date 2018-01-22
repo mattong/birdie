@@ -1,0 +1,16 @@
+.nav-bar
+  .container
+    .left
+      ul.nav-links
+        li
+          img.logo(src="/images/birdie-logo.svg")
+        li
+          a(href="#") Home
+        li
+          a(href="#") Notifications
+    .right
+      .search-box
+        input(type="text")
+        button(type="submit") Search
+      .user-dropdown= "@#{@user.handle}"
+
