@@ -2,7 +2,7 @@ defmodule BirdieWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", BirdieWeb.RoomChannel
+  channel "chirp:*", BirdieWeb.ChirpChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
