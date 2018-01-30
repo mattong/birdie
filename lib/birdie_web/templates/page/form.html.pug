@@ -1,8 +1,10 @@
-= form_for @changeset, @action, fn f ->
+= form_for @changeset, "", fn f ->
   = csrf_meta_tag()
   .form-group
     = label f, :content, class: "control-label"
     = textarea f, :content, class: "form-control", required: true
     = error_tag f, :content
+  = hidden_input f, :current_user, value: @user.handle
+  = hidden_input f, :user_id, value: @user.id
   .form-group.-submit
     =submit "Chirp mo 'to!", class: "btn btn-primary create-comment", id: "chirp_button"

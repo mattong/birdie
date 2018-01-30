@@ -3,9 +3,6 @@ defmodule BirdieWeb.ChirpController do
   alias Birdie.Chirps.Dashboard
 
   def chirp(conn, %{"chirp" => chirp}) do
-    chirp =
-      chirp
-      |> Map.put("author_id", conn.assigns.current_user.id)
 
     case Dashboard.create_chirp(chirp) do
       {:ok, _} ->
