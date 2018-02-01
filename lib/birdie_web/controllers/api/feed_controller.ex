@@ -6,7 +6,7 @@ defmodule BirdieWeb.Api.FeedController do
   }
 
   def chirps(conn, %{"handle" => handle}) do
-    user = Chirper.get_user_by_handle(handle)
+    user = Chirper.get_user(handle)
     chirps = Dashboard.list_user_feed(user)
     render(conn, "feed.json", chirps: chirps)
   end
