@@ -1,0 +1,24 @@
+@import '../common';
+
+.chirp-box {
+  background: $white;
+  border-radius: 16px;
+  padding: 4px;
+  margin: 8px;
+  width: 75%;
+
+  > .head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  > .head > .name,
+  > .chirp {
+    margin-left: 16px;
+  }
+
+  > .head > .date {
+    margin-right: 16px;
+  }
+}

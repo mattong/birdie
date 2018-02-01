@@ -4,10 +4,8 @@
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/web/endpoint.ex":
 import {Socket} from "phoenix"
-import $ from "jquery"
 
 let socket = new Socket("/socket", {params: {token: window.userToken}})
-
 
 socket.connect()
 
@@ -22,39 +20,27 @@ let chirpUserId = document.querySelector("#chirp_user_id")
 
 chirpButton.addEventListener("click", event => {
     event.preventDefault()
-    $.post("/dashboard", {chirp: {content: chirpInput.value, author_id: chirpUserId.value}})
-    .then(response => {
-      channel.push("new_chirp", {user: chirpUser.value})
-    })
+    channel.push("new_chirp", {content: chirpInput.value, author_id: chirpUserId.value})
 })
 
 const buildFeed = (chirp) => {
     return(
-    `<div id="chirp-${chirp.id} class="chirp">
-       <div class="row">
-         <div class="col-xs-4">
-           <strong class="chirp-author"> ${chirp.author} </strong>
-           <p> ${chirp.timestamp} </p>
-         </div>
+    `<div class="chirp-box">
+       <div class="head">
+          <strong class="name"> ${chirp.author} </strong>
+          <p class="date"> ${chirp.timestamp} </p>
        </div>
-       <div class="col-xs-12">
-         ${chirp.content}
-       </div>
+     <p class="chirp"> ${chirp.content} </p>
      </div>`
     )
 }
 
 channel.on("new_chirp", payload => {
-    $.get(`/api/${payload.user}`)
-      .then( response => {
-        $(feedContainer).empty()
-        Object.keys(response.chirps).map(function(key, index) {
-            const chirpElement = buildFeed(response.chirps[key])
-            const chirpHtml = $.parseHTML(chirpElement)
-            $(feedContainer).append(chirpHtml)
-        })
-        chirpInput.value = ""
-      })
+  let chirpElement = buildFeed(payload)
+  let chirpDiv = document.createElement("div")
+  chirpDiv.innerHTML = chirpElement
+  feedContainer.insertBefore(chirpDiv, feedContainer.childNodes[0])
+  chirpInput.value = ""
 })
 
 channel.join()
