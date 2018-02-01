@@ -1,5 +1,7 @@
+@import '../common';
+
 .chirp-box {
-  background: white;
+  background: $white;
   border-radius: 16px;
   padding: 4px;
   margin: 8px;
@@ -11,15 +13,12 @@
     justify-content: space-between;
   }
 
-  > .head > .name {
+  > .head > .name,
+  > .chirp {
     margin-left: 16px;
   }
 
   > .head > .date {
     margin-right: 16px;
-  }
-
-  > .chirp {
-    margin-left: 16px;
   }
 }
