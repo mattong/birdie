@@ -21,7 +21,8 @@ let chirpUserId = document.querySelector("#chirp_user_id")
 
 chirpButton.addEventListener("click", event => {
     event.preventDefault()
-    channel.push("new_chirp", {body: chirpInput.value, user: chirpUser.value, id: chirpUserId.value})
+    $.post("/dashboard", {chirp: {content: chirpInput.value, author_id: chirpUserId.value}})
+    channel.push("new_chirp", {user: chirpUser.value})
 })
 
 const buildFeed = (chirp) => {
@@ -41,20 +42,16 @@ const buildFeed = (chirp) => {
 }
 
 channel.on("new_chirp", payload => {
-    console.log(payload)
-    $.post("/dashboard", {chirp: {content: payload.body, author_id: payload.user_id}})
-    .then (
-      $.get(`/api/${payload.user}`)
-        .then( response => {
-          $(feedContainer).empty()
-          Object.keys(response.chirps).map(function(key, index) {
-              const chirpElement = buildFeed(response.chirps[key])
-              const chirpHtml = $.parseHTML(chirpElement)
-              $(feedContainer).append(chirpHtml)
-          })
-          chirpInput.value = ""
+    $.get(`/api/${payload.user}`)
+      .then( response => {
+        $(feedContainer).empty()
+        Object.keys(response.chirps).map(function(key, index) {
+            const chirpElement = buildFeed(response.chirps[key])
+            const chirpHtml = $.parseHTML(chirpElement)
+            $(feedContainer).append(chirpHtml)
         })
-    )
+        chirpInput.value = ""
+      })
 })
 
 channel.join()

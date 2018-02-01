@@ -5,8 +5,8 @@ defmodule BirdieWeb.ChirpChannel do
     {:ok, socket}
   end
 
-  def handle_in("new_chirp", %{"body" => body, "user" => user, "id" => id}, socket) do
-    broadcast! socket, "new_chirp", %{body: body, user: user, user_id: id}
+  def handle_in("new_chirp", %{"user" => user}, socket) do
+    broadcast! socket, "new_chirp", %{user: user}
     {:noreply, socket}
   end
 end
