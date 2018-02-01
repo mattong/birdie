@@ -4,7 +4,6 @@
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/web/endpoint.ex":
 import {Socket} from "phoenix"
-import $ from "jquery"
 
 let socket = new Socket("/socket", {params: {token: window.userToken}})
 
@@ -37,10 +36,11 @@ const buildFeed = (chirp) => {
 }
 
 channel.on("new_chirp", payload => {
-  console.log(payload)
   let chirpElement = buildFeed(payload)
+  let chirpDiv = document.createElement("div")
+  chirpDiv.innerHTML = chirpElement
+  feedContainer.insertBefore(chirpDiv, feedContainer.childNodes[0])
   chirpInput.value = ""
-  $(feedContainer).prepend(chirpElement)
 })
 
 channel.join()
