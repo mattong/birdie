@@ -1,6 +1,7 @@
 = if @current_user.id == @user.id do
   h2 Welcome to your profile,
    =@user.first_name
+    a(href=page_path(@conn, :index))= "Back to dashboard"
   .container
     .col-md-6.col-offset-3
       =render "form.html", conn: @conn, changeset: @changeset, action: chirp_path(@conn, :chirp)
@@ -19,8 +20,7 @@
 
 ul
 = for chirp <- @chirps do
-  li= "#{chirp.content} | @#{chirp.author.handle}"
-
+  = render BirdieWeb.PageView, "chirp.html", chirp: chirp, author: @user.handle
 
 h3 Following
 ul
@@ -33,4 +33,5 @@ ul
   = for f <- @followers_list do
     li= "#{f.first_name}"
       =link "@#{f.handle}", to: profile_path(@conn, :index, f.handle)
+
 
