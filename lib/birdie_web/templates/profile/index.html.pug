@@ -33,5 +33,3 @@ ul
   = for f <- @followers_list do
     li= "#{f.first_name}"
       =link "@#{f.handle}", to: profile_path(@conn, :index, f.handle)
-
-
