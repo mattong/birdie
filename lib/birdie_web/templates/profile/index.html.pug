@@ -8,6 +8,11 @@
 - else
   h2= "@#{@user.handle}"
 
+h3 Followers
+  li= @follower_count
+h2 Following
+  li= @following_count
+
 = if @show_button == :follow_button do
   = form_for @conn, follows_path(@conn, :follow), fn f ->
     = hidden_input f, :user_id, value: @user.id
@@ -21,15 +26,3 @@
 ul
 = for chirp <- @chirps do
   = render BirdieWeb.PageView, "chirp.html", chirp: chirp, author: @user.handle
-
-h3 Following
-ul
-  = for f <- @following_list do
-    li= "#{f.first_name}"
-      =link "@#{f.handle}", to: profile_path(@conn, :index, f.handle)
-
-h3 Followers
-ul
-  = for f <- @followers_list do
-    li= "#{f.first_name}"
-      =link "@#{f.handle}", to: profile_path(@conn, :index, f.handle)

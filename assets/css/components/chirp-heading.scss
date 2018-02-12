@@ -1,0 +1,22 @@
+@import '../common';
+
+.chirp-heading {
+  background-color: $gradient-blue;
+
+  > h2 {
+      text-align: center;
+  }
+
+  > .vapor {
+      position: relative;
+      z-index: 2;
+      margin-left: 200px;
+      color: #6EFCBB;
+      font-weight: bold;
+      font-size: 42pt;
+      font-family: sans-serif;
+      text-shadow: 4px 4px 0px #4AB18E;
+      line-height: 120px;
+  }
+
+}
