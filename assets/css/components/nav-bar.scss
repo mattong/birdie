@@ -1,0 +1,27 @@
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5000;
+  background-color: white;
+  padding: 8px;
+  color: #c773c7;
+
+  > .container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  > * > .left {
+    flex: 1 0 auto;
+  }
+
+  > * > .right {
+    flex: 0 1 auto;
+  }
+
+  > * > .right > * {
+    display: inline;
+  }
+}
