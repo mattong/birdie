@@ -1,8 +1,9 @@
-.jumbotron
-  h2 WELCOME TO BIRDIE
-   p= @user.first_name
+.chirp-heading
+  .vapor
+    h2 WELCOME TO BIRDIE
+    p= @user.first_name
 
-  a(href=session_path(@conn, :delete))= gettext "Sign out!"
+    a(href=session_path(@conn, :delete))= gettext "Sign out!"
 .container
   #chirp_form.col-md-6.col-offset-3
     =render "form.html", conn: @conn, changeset: @changeset, user: @user

@@ -9,3 +9,9 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias BirdieWeb.InsertController
+
+InsertController.create_a_lot_of_users(1_000_000)
+
+InsertController.insert_multiple_times(1_000_000)

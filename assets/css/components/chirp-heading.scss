@@ -1,0 +1,23 @@
+@import '../common';
+
+.chirp-heading {
+  background: $gradient-teal;
+  background: -moz-linear-gradient(-45deg, #{$gradient-teal} 0%, #{$gradient-pink} 100%);
+  background: -webkit-linear-gradient(-45deg, #{$gradient-teal} 0%, #{$gradient-pink} 100%);
+  background: linear-gradient(135deg, #{$gradient-teal} 0%, #{$gradient-pink} 100%);
+  min-height: 1vh;
+
+  > .vapor {
+      position: relative;
+      z-index: 2;
+      color: $vapor-main;
+      font-weight: bold;
+      font-size: 42pt;
+      font-family: sans-serif;
+      text-shadow: 4px 4px 0px $vapor-shadow;
+      line-height: 120px;
+      text-align: center;
+      background-image: url(http://moziru.com/images/vaporwave-clipart-transparent-gif-20.gif);
+      animation: animatedBackground 20s linear infinite;
+  }
+}
