@@ -1,0 +1,15 @@
+@import '../common';
+
+.search-box {
+  border: 1px solid $a;
+  border-radius: 20px;
+  padding: 4px 0 4px 8px;
+  position: relative;
+  margin-right: 16px;
+
+  > input, button {
+    border: none;
+    background-color: transparent;
+    color: $a;
+  }
+}
