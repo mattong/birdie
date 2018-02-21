@@ -16,15 +16,10 @@
         .stat
           .label Following
           .value= "90"
+  .-right
+    #chirp-form
+      =render "form.html", conn: @conn, changeset: @changeset, user: @user
 
-#chirp-form.user-timeline.-right
-  =render "form.html", conn: @conn, changeset: @changeset, user: @user
-#feed
-  = for chirp <- @chirps do
-    =render "chirp.html", chirp: chirp, author: chirp.author.handle
-
-.col-md-6.col-offset-3
-
-a(href=profile_path(@conn, :index, @user.handle))= gettext "Profile mo 'to"
-
-a(href=session_path(@conn, :delete))= gettext "Sign out!"
+    #feed.user-timeline
+      = for chirp <- @chirps do
+        =render "chirp.html", chirp: chirp, author: chirp.author.handle
